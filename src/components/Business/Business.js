@@ -1,6 +1,7 @@
 import React from 'react';
 import './Business.css'
 
+/*
 export class Business extends React.Component {
     render() {
         console.log(this.props.imageSrc);
@@ -26,30 +27,30 @@ export class Business extends React.Component {
         );
     }
 } 
+*/
 
-/*
-export function Business () {
+export function Business (props) {
     return (
         <div className="Business">
             <div className="image-container">
-                <img src={business.imageSrc} alt={business.name}/>
+                <img src={props.business.imageSrc} alt={props.business.name}/>
             </div>
-            <h2>{business.name}</h2>
+            <h2>{props.business.name}</h2>
             <div className="Business-information">
                 <div className="Business-address">
-                    <p>{business.address}</p>
-                    <p>{business.city}</p>
-                    <p>{business.state} {business.zipCode}</p>
+                    <p>{props.business.address}</p>
+                    <p>{props.business.city}</p>
+                    <p>{props.business.state} {props.business.zipCode}</p>
                 </div>
                 <div className="Business-reviews">
-                    <h3>{business.category}</h3>
-                    <h3 className="rating">{business.rating} Stars</h3>
-                    <p>{business.reviewCount} Reviews</p>
+                    <h3>{props.business.category}</h3>
+                    <h3 className="rating">{props.business.rating} Stars</h3>
+                    <p>{props.business.reviewCount} Reviews</p>
                 </div>
             </div>
         </div>
     );
 }
-*/
+
 
 export default Business;
