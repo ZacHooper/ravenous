@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './SearchBar.css'
 
+/*
 class SearchBar extends React.Component {
     constructor (props) {
         super(props);
@@ -71,15 +72,44 @@ class SearchBar extends React.Component {
         );
     }
 } 
+*/
 
-/*
-function SearchBar() {
-    function renderSortByOptions() {
+//Clicks can likely be handled in the return call however, onChange events need a handler function
+
+function SearchBar(props) {
+    const sortByOptions = {
+        'Best Match': 'best_match',
+        'Highest Rated': 'rating',
+        'Most Reviewed': 'review_count'
+    };
+
+    const [term, setTerm] = useState("");
+    const [location, setLocation] = useState("");
+    const [sortBy, setSortBy] = useState("best_match");
+
+    const getSortByClass = (sortByOption) => {
+        return sortByOption === sortBy ? 'active' : '';
+    }
+
+    const handleTermChange = (event) => {
+        return setTerm(event.target.value);
+    }
+
+    const handleLocationChange = (event) => {
+        return setLocation(event.target.value);
+    }
+
+    const renderSortByOptions = () => {
         return Object.keys(sortByOptions).map(sortByOption => {
             let sortByOptionValue = sortByOptions[sortByOption];
-            return <li key={sortByOptionValue}>{sortByOption}</li>;
+            return <li 
+                className={getSortByClass(sortByOptionValue)} 
+                onClick={() => setSortBy(sortByOptionValue)} //This is 'function' is essentially the 'handle' function in the class approach above
+                key={sortByOptionValue}>
+                    {sortByOption}</li>;
         });
     }
+
     return (
         <div className="SearchBar">
             <div className="SearchBar-sort-options">
@@ -88,15 +118,24 @@ function SearchBar() {
                 </ul>
             </div>
             <div className="SearchBar-fields">
-                <input placeholder="Search Businesses" />
-                <input placeholder="Where?" />
+                <input 
+                    onChange={handleTermChange} 
+                    placeholder="Search Businesses" />
+                <input 
+                    onChange={handleLocationChange}
+                    placeholder="Where?" />
             </div>
             <div className="SearchBar-submit">
-                <a>Let's Go</a>
+                <a onClick={
+                    (event) => {
+                        props.searchYelp(term, location, sortBy);
+                        event.preventDefault();
+                    }
+                }>Let's Go</a>
             </div>
         </div>
     );
 }
-*/
+
 
 export default SearchBar;
