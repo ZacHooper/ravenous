@@ -38,9 +38,11 @@ export function Business (props) {
             <h2>{props.business.name}</h2>
             <div className="Business-information">
                 <div className="Business-address">
-                    <p>{props.business.address}</p>
-                    <p>{props.business.city}</p>
-                    <p>{props.business.state} {props.business.zipCode}</p>
+                    <a href={`https://www.google.com/maps/search/?api=1&query=${props.business.latitude},${props.business.longitude}`} target="_blank">
+                        <p>{props.business.address}</p>
+                        <p>{props.business.city}</p>
+                        <p>{props.business.state} {props.business.zipCode}</p>
+                    </a>
                 </div>
                 <div className="Business-reviews">
                     <h3>{props.business.category}</h3>
