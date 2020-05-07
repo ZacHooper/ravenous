@@ -99,6 +99,12 @@ function SearchBar(props) {
         return setLocation(event.target.value);
     }
 
+    const handleEnterPress = (event) => {
+        if (event.key === 'Enter') {
+            props.searchYelp(term, location, sortBy);
+        }
+    }
+
     const renderSortByOptions = () => {
         return Object.keys(sortByOptions).map(sortByOption => {
             let sortByOptionValue = sortByOptions[sortByOption];
@@ -120,10 +126,12 @@ function SearchBar(props) {
             <div className="SearchBar-fields">
                 <input 
                     onChange={handleTermChange} 
-                    placeholder="Search Businesses" />
+                    placeholder="Search Businesses" 
+                    onKeyDown={handleEnterPress} />
                 <input 
                     onChange={handleLocationChange}
-                    placeholder="Where?" />
+                    placeholder="Where?"
+                    onKeyDown={handleEnterPress} />
             </div>
             <div className="SearchBar-submit">
                 <a onClick={
