@@ -22,8 +22,8 @@ function BusinessList(props) {
     return (
         <div className="BusinessList">
             {
-                props.businesses.map((business, index) => {
-                    return <Business key={`Business_${index}`} business={business}/>
+                props.businesses.map(business => {
+                    return <Business key={`Business_${business.id}`} business={business}/>
                 })
             }
         </div>
